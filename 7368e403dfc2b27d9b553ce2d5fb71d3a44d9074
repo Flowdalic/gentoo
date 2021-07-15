@@ -1,0 +1,1 @@
+- Do not longer export src_prepare in EAPI 8 (as requested by ionen)
