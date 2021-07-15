@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: xdg.eclass
@@ -6,7 +6,7 @@
 # freedesktop-bugs@gentoo.org
 # @AUTHOR:
 # Original author: Gilles Dartiguelongue <eva@gentoo.org>
-# @SUPPORTED_EAPIS: 4 5 6 7
+# @SUPPORTED_EAPIS: 4 5 6 7 8
 # @BLURB: Provides phases for XDG compliant packages.
 # @DESCRIPTION:
 # Utility eclass to update the desktop, icon and shared mime info as laid
@@ -16,22 +16,35 @@ inherit xdg-utils
 
 case "${EAPI:-0}" in
 	4|5|6|7)
-		EXPORT_FUNCTIONS src_prepare pkg_preinst pkg_postinst pkg_postrm
+		EXPORT_FUNCTIONS src_prepare
+		;&
+	8)
+		EXPORT_FUNCTIONS pkg_preinst pkg_postinst pkg_postrm
 		;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
 # Avoid dependency loop as both depend on glib-2
 if [[ ${CATEGORY}/${P} != dev-libs/glib-2.* ]] ; then
-DEPEND="
+_XDG_DEPEND="
 	dev-util/desktop-file-utils
 	x11-misc/shared-mime-info
 "
+
+case "${EAPI}" in
+	4|5|6|7)
+		DEPEND="${_XDG_DEPEND}"
+		;;
+	*)
+		IDEPEND="${_XDG_DEPEND}"
+		;;
+esac
 fi
 
 # @FUNCTION: xdg_src_prepare
 # @DESCRIPTION:
 # Prepare sources to work with XDG standards.
+# Note that this function is only exported in EAPIs < 8.
 xdg_src_prepare() {
 	xdg_environment_reset
 
