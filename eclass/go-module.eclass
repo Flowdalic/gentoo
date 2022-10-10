@@ -377,6 +377,15 @@ _go-module_src_unpack_gosum() {
 		die "go-module_set_globals must be called in global scope"
 	fi
 
+	local -i a_size="${#A}"
+	# Environment variables must not exceed MAX_ARG_STRLEN (128 KiB) on
+	# Linux, or otherwise execve() may fail. Ensure that A stays below
+	# this value. See also https://bugs.gentoo.org/719202#c16
+	if [[ ${a_size} -gt 114688 ]]; then
+		# A is larger than 112 KiB.
+		die "Size of A variable (${a_size} bytes) is too large. Please use a dependency tarball instead of EGO_SUM."
+	fi
+
 	local goproxy_dir="${GOPROXY/file:\/\//}"
 	mkdir -p "${goproxy_dir}" || die
 
