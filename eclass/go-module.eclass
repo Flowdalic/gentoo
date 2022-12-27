@@ -122,6 +122,9 @@ RESTRICT+=" strip"
 # level directory of the software you are packaging. Each entry must be
 # quoted and contain the first two fields of a line from go.sum.
 #
+# The allowed number of entires in EGO_SUM is limited. If your ebuild
+# exceeds that limit, then you have to use a dependency tarball instead.
+#
 # You can use some combination of sed/awk/cut to extract the
 # contents of EGO_SUM or use the dev-go/get-ego-vendor tool.
 #
@@ -225,6 +228,10 @@ go-module_set_globals() {
 	local -a gosum_errorlines
 	# used make SRC_URI easier to read
 	local newline=$'\n'
+
+	if (( ${EGO_SUM[#]} > 1500 )); then
+		die "EGO_SUM has more than 1500 entries (${EGO_SUM[#]}). Please use a dependency tarball instead."
+	fi
 
 	# Now parse EGO_SUM
 	for line in "${EGO_SUM[@]}"; do
