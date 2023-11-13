@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+	<mime-type type="application/vnd.jgraph.mxfile">
+		<sub-class-of type="text/xml"/>
+		<comment>draw.io Diagram</comment>
+		<glob pattern="*.drawio"/>
+		<icon name="application-vnd.jgraph.mxfile"/>
+	</mime-type>
+	<mime-type type="application/vnd.visio">
+		<sub-class-of type="application/zip"/>
+		<comment>Office Open XML Visio drawing</comment>
+		<glob pattern="*.vsdx"/>
+	</mime-type>
+</mime-info>
+
