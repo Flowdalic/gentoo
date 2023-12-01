@@ -26,12 +26,26 @@ KEYWORDS="~amd64 ~x86"
 RDEPEND="
 	>=net-libs/nodejs-16[ssl]
 	>=dev-libs/nss-3
-	app-accessibility/at-spi2-core
-	net-print/cups
-	x11-libs/libdrm
-	x11-libs/gtk+:3
-	x11-libs/libxkbcommon
+	app-accessibility/at-spi2-core:2
+	dev-libs/expat
+	dev-libs/glib:2
+	dev-libs/nspr
 	media-libs/alsa-lib
+	media-libs/mesa
+	net-print/cups
+	sys-apps/dbus
+	x11-libs/cairo
+	x11-libs/gtk+:3
+	x11-libs/libX11
+	x11-libs/libXcomposite
+	x11-libs/libXdamage
+	x11-libs/libXext
+	x11-libs/libXfixes
+	x11-libs/libXrandr
+	x11-libs/libdrm
+	x11-libs/libxcb:=
+	x11-libs/libxkbcommon
+	x11-libs/pango
 "
 
 MY_NODE_DIR="${S}/${MY_NODE_D}/"
@@ -70,42 +84,9 @@ src_install() {
 	insopts -m0755
 	doins sync.js
 
-	# Copy license
-	insopts -m0644
-	doins LICENSE
-
 	# Create executable
-	cat >> drawio-desktop.sh <<EOF
-#!/bin/bash
-if [ \$# -ne 0 ]; then
-	abspath=\$(/usr/bin/realpath "\$1")
-fi
-
-cd /usr/share/drawio-desktop || exit
-export DRAWIO_DISABLE_UPDATE=true
-
-if [ "\$EUID" -ne 0 ]; then
-	if [ \$# -eq 0 ]; then
-		./node_modules/.bin/electron --version="DD_VER" --name="draw.io" \
---description="draw.io desktop" . ./src/main/electron.js
-		exit;
-	fi
-	./node_modules/.bin/electron . "\$abspath"  --version="DD_VER" --name="draw.io" \
---description="draw.io desktop" ./src/main/electron.js
-	exit;
-fi
-if [ \$# -eq 0 ]; then
-	./node_modules/.bin/electron --no-sandbox --version="DD_VER" --name="draw.io" \
---description="draw.io desktop" . ./src/main/electron.js
-	exit;
-fi
-./node_modules/.bin/electron . "\$abspath" --no-sandbox --version="DD_VER" --name="draw.io" \
---description="draw.io desktop" ./src/main/electron.js
-EOF
-	sed -i -e "s*DD_VER*${PV}*g" "drawio-desktop.sh" || die "couldn't set version in sh file"
-	exeinto "/usr/share/${PN}/"
-	newexe "drawio-desktop.sh" drawio-desktop.sh
-	dosym -r "/usr/share/${PN}/drawio-desktop.sh" "/usr/bin/drawio-desktop"
+	exeinto /usr/bin
+	newexe - ${PN} < <(sed s/@DD_VER@/${PV}/g "${FILESDIR}/drawio-desktop.sh" || die)
 
 	# Copy icons
 	newicon -s scalable "${S}/build/icon.svg" drawio.svg
