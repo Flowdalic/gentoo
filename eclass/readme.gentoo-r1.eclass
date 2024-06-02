@@ -14,6 +14,22 @@
 # shown at first package installation and a file for later reviewing will be
 # installed under /usr/share/doc/${PF}
 #
+# @CODE
+# inherit readme.gentoo-r1
+#
+# src_install() {
+#   …
+#   readme.gentoo_stdin <<-EOF
+#   This is the content of the created readme doc file.
+#   EOF
+#   …
+#   if use foo; then
+#     readme.gentoo_stdin --apend <<-EOF
+#     This is conditional readme content, based on USE=foo.
+#     EOF
+#   fi
+# }
+# @CODE
 #
 # You need to call readme.gentoo_create_doc in src_install phase if you
 # use DOC_CONTENTS or obtain the readme from FILESIDR.
@@ -58,6 +74,41 @@ _GREADME_TMP_FILE="${T}/${_GREADME_FILENAME}"
 _GREADME_DOC_DIR="usr/share/doc/${PF}"
 _GREADME_REL_PATH="${_GREADME_DOC_DIR}/${_GREADME_FILENAME}"
 _GREADME_HASH_REL_PATH="${_GREADME_DOC_DIR}/${_GREADME_HASH_FILENAME}"
+
+# @FUNCTION: readme.gentoo_stdin
+# @USAGE: [--append]
+# @DESCRIPTION:
+# Create the readme doc via stdin.  You can use --append to append to an
+# existing readme doc.
+readme.gentoo_stdin() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	local append=false
+	while [[ -n ${1} ]] && [[ ${1} =~ --* ]]; do
+		case ${1} in
+			--append)
+				append=true
+				shift
+				;;
+		esac
+	done
+
+	if $append; then
+		if [[ ! -f "${_GREADME_TMP_FILE}" ]]; then
+			die "Gentoo README does not exist when trying to append to it"
+		fi
+
+		cat >> "${_GREADME_TMP_FILE}" || die
+	else
+		if [[ -f "${_GREADME_TMP_FILE}" ]]; then
+			die "Gentoo README already exists while trying to create it"
+		fi
+
+		cat > "${_GREADME_TMP_FILE}" || die
+	fi
+
+	readme.gentoo_create_doc
+}
 
 # @FUNCTION: readme.gentoo_create_doc
 # @DESCRIPTION:
