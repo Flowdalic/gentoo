@@ -110,6 +110,27 @@ readme.gentoo_stdin() {
 	readme.gentoo_create_doc
 }
 
+# @FUNCTION: readme.gentoo_file
+# @USAGE: <file>
+# @DESCRIPTION:
+# Installs the provided file as readme doc.
+readme.gentoo_file() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	local input_doc_file="${1}"
+	if [[ -z "${input_doc_file}" ]]; then
+		die "No file specified"
+	fi
+
+	if [[ -f "${_GREADME_TMP_FILE}" ]]; then
+		die "Gentoo README already exists"
+	fi
+
+	cp "${input_doc_file}" "${_GREADME_TMP_FILE}" || die "Failed to copy ${input_doc_file}"
+
+	readme.gentoo_create_doc
+}
+
 # @FUNCTION: readme.gentoo_create_doc
 # @DESCRIPTION:
 # Create doc file with ${DOC_CONTENTS} variable (preferred) and, if not set,
