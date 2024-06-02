@@ -70,20 +70,20 @@ readme.gentoo_create_doc() {
 
 	if [[ -n "${DOC_CONTENTS}" ]]; then
 		if [[ -n "${DISABLE_AUTOFORMATTING}" ]]; then
-			echo "${DOC_CONTENTS}" > "${T}"/README.gentoo || die
+			echo "${DOC_CONTENTS}" > "${_GREADME_TMP_FILE}" || die
 		else
 			local saved_flags=$-
 			set -f				# disable filename expansion in echo arguments
 			echo -e ${DOC_CONTENTS} | fold -s -w 70 \
-				| sed 's/[[:space:]]*$//' > "${T}"/README.gentoo
+				| sed 's/[[:space:]]*$//' > "${_GREADME_TMP_FILE}"
 			assert
 			set +f -${saved_flags}
 		fi
 	elif [[ -f "${FILESDIR}/README.gentoo-${SLOT%/*}" ]]; then
-		cp "${FILESDIR}/README.gentoo-${SLOT%/*}" "${T}"/README.gentoo || die
+		cp "${FILESDIR}/README.gentoo-${SLOT%/*}" "${_GREADME_TMP_FILE}" || die
 	elif [[ -f "${FILESDIR}/README.gentoo${README_GENTOO_SUFFIX}" ]]; then
-		cp "${FILESDIR}/README.gentoo${README_GENTOO_SUFFIX}" "${T}"/README.gentoo || die
-	else
+		cp "${FILESDIR}/README.gentoo${README_GENTOO_SUFFIX}" "${_GREADME_TMP_FILE}" || die
+	elif [[ ! -f "${_GREADME_TMP_FILE}" ]]; then
 		die "You are not specifying README.gentoo contents!"
 	fi
 
