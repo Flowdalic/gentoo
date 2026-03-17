@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: multiprocessing.eclass
@@ -83,6 +83,7 @@ get_makeopts_jobs() {
 }
 
 # @FUNCTION: makeopts_jobs
+# @DEPRECATED: get_makeopts_jobs
 # @USAGE: [${MAKEOPTS}] [${inf:-$(( $(get_nproc) + 1 ))}]
 # @DESCRIPTION:
 # Searches the arguments (or sensible defaults) and extracts the jobs number
@@ -112,6 +113,7 @@ get_makeopts_loadavg() {
 }
 
 # @FUNCTION: makeopts_loadavg
+# @DEPRECATED: get_makeopts_loadavg
 # @USAGE: [${MAKEOPTS}] [${inf:-999}]
 # @DESCRIPTION:
 # Searches the arguments (or sensible defaults) and extracts the value set
