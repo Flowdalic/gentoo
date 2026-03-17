@@ -1,4 +1,4 @@
-# Copyright 2014-2025 Gentoo Authors
+# Copyright 2014-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -149,20 +149,20 @@ src_configure() {
 src_compile() {
 	# Build 3rd party fcollada
 	einfo "Building bundled fcollada"
-	JOBS="-j$(makeopts_jobs)" ./libraries/source/fcollada/build.sh || die "Failed to build bundled fcollada"
+	JOBS="-j$(get_makeopts_jobs)" ./libraries/source/fcollada/build.sh || die "Failed to build bundled fcollada"
 
 	# Build bundled NVTT
 	# nvtt is abandoned upstream and 0ad has forked it and added fixes.
 	# Use their copy. bug #768930
 	if use nvtt; then
 		elog "Building bundled NVTT (bug #768930)"
-		JOBS="-j$(makeopts_jobs)" ./libraries/source/nvtt/build.sh || die "Failed to build bundled NVTT"
+		JOBS="-j$(get_makeopts_jobs)" ./libraries/source/nvtt/build.sh || die "Failed to build bundled NVTT"
 	fi
 
 	# Shouldn't be needed with tests disabled, unfortunatly it still is for a27
 	# https://gitea.wildfiregames.com/0ad/0ad/issues/7537
 	einfo "Building bundled cxxtest"
-	JOBS="-j$(makeopts_jobs)" ./libraries/source/cxxtest-4.4/build.sh || die "Failed to build bundled cxxtest"
+	JOBS="-j$(get_makeopts_jobs)" ./libraries/source/cxxtest-4.4/build.sh || die "Failed to build bundled cxxtest"
 
 	# Build 0ad itself!
 	elog "Building 0ad"

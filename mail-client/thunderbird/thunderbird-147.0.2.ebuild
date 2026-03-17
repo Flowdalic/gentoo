@@ -521,7 +521,7 @@ src_prepare() {
 	eapply_user
 
 	# Make cargo respect MAKEOPTS
-	export CARGO_BUILD_JOBS="$(makeopts_jobs)"
+	export CARGO_BUILD_JOBS="$(get_makeopts_jobs)"
 
 	# Workaround for bgo#915651
 	if ! use elibc_glibc ; then
@@ -549,13 +549,13 @@ src_prepare() {
 	fi
 
 	# Make LTO respect MAKEOPTS
-	sed -i -e "s/multiprocessing.cpu_count()/$(makeopts_jobs)/" \
+	sed -i -e "s/multiprocessing.cpu_count()/$(get_makeopts_jobs)/" \
 		"${S}"/build/moz.configure/lto-pgo.configure || die "Failed sedding multiprocessing.cpu_count"
 
-	sed -i -e "s/multiprocessing.cpu_count()/$(makeopts_jobs)/" \
+	sed -i -e "s/multiprocessing.cpu_count()/$(get_makeopts_jobs)/" \
 		"${S}"/third_party/chromium/build/toolchain/get_cpu_count.py || die "Failed sedding multiprocessing.cpu_count"
 
-	sed -i -e "s/multiprocessing.cpu_count()/$(makeopts_jobs)/" \
+	sed -i -e "s/multiprocessing.cpu_count()/$(get_makeopts_jobs)/" \
 		"${S}"/third_party/python/gyp/pylib/gyp/input.py || die "Failed sedding multiprocessing.cpu_count"
 
 	# sed-in toolchain prefix

@@ -413,7 +413,7 @@ src_configure() {
 }
 
 src_compile() {
-	export CMAKE_BUILD_PARALLEL_LEVEL=$(makeopts_jobs)
+	export CMAKE_BUILD_PARALLEL_LEVEL=$(get_makeopts_jobs)
 	cmake_build all
 
 	# we have to do this here to prevent from building everything multiple times

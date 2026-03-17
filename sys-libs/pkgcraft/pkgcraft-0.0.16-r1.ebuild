@@ -1,4 +1,4 @@
-# Copyright 2023-2025 Gentoo Authors
+# Copyright 2023-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -75,7 +75,7 @@ src_test() {
 		# pkgcraft-c.
 		cd "${WORKDIR}"/${P} || die
 
-		local -x NEXTEST_TEST_THREADS="$(makeopts_jobs)"
+		local -x NEXTEST_TEST_THREADS="$(get_makeopts_jobs)"
 
 		# Need nextest per README (separate processes required)
 		# Invocation from https://github.com/pkgcraft/pkgcraft/blob/main/.github/workflows/ci.yml#L56

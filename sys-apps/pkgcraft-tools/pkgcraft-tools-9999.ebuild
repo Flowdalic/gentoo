@@ -83,7 +83,7 @@ src_test() {
 	# pkgcraft-tools::pk repo::leaf::multiple_repos_not_supported
 	unset CLICOLOR CLICOLOR_FORCE
 
-	local -x NEXTEST_TEST_THREADS="$(makeopts_jobs)"
+	local -x NEXTEST_TEST_THREADS="$(get_makeopts_jobs)"
 	edo cargo nextest run $(usev !debug '--release') --color always --tests --no-fail-fast
 }
 

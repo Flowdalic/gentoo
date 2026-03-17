@@ -45,7 +45,7 @@ src_configure() {
 
 	local mycmakeargs=(
 		-DBUILD_TEST=$(usex test)
-		-DCMAKE_BUILD_PARALLEL_LEVEL=$(makeopts_jobs)
+		-DCMAKE_BUILD_PARALLEL_LEVEL=$(get_makeopts_jobs)
 		-DENABLE_EXTERNAL_PLUGINS=ON
 		-DINSTALL_PRIVATE_HEADERS=ON
 	)

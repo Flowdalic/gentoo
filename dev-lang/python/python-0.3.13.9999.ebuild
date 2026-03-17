@@ -143,7 +143,7 @@ src_prepare() {
 
 	# force the correct number of jobs
 	# https://bugs.gentoo.org/737660
-	sed -i -e "s:-j0:-j$(makeopts_jobs):" Makefile.pre.in || die
+	sed -i -e "s:-j0:-j$(get_makeopts_jobs):" Makefile.pre.in || die
 
 	# breaks tests when using --with-wheel-pkg-dir
 	rm -r Lib/test/wheeldata || die
@@ -315,7 +315,7 @@ src_configure() {
 	if use pgo; then
 		local profile_task_flags=(
 			-m test
-			"-j$(makeopts_jobs)"
+			"-j$(get_makeopts_jobs)"
 			--pgo-extended
 			--verbose3
 			-u-network
@@ -487,7 +487,7 @@ src_test() {
 	local test_opts=(
 		--verbose3
 		-u-network
-		-j "$(makeopts_jobs)"
+		-j "$(get_makeopts_jobs)"
 		"${COMMON_TEST_SKIPS[@]}"
 	)
 

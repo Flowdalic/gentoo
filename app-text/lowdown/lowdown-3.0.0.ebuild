@@ -55,7 +55,7 @@ src_configure() {
 	append-flags -fPIC
 	tc-export CC AR
 
-	local jobs="$(makeopts_jobs)"
+	local jobs="$(get_makeopts_jobs)"
 	unset MAKEOPTS
 	unset MAKEFLAGS
 

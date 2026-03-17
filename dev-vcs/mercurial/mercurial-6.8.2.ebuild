@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -266,7 +266,7 @@ python_prepare_all() {
 src_compile() {
 	if use rust; then
 		pushd rust/hg-cpython || die
-		cargo_src_compile --no-default-features --jobs $(makeopts_jobs)
+		cargo_src_compile --no-default-features --jobs $(get_makeopts_jobs)
 		popd || die
 	fi
 	distutils-r1_src_compile
@@ -287,7 +287,7 @@ python_compile_all() {
 	fi
 	if use rust; then
 		pushd rust/rhg || die
-		cargo_src_compile --no-default-features --jobs $(makeopts_jobs)
+		cargo_src_compile --no-default-features --jobs $(get_makeopts_jobs)
 		popd || die
 	fi
 	if use emacs; then
@@ -381,7 +381,7 @@ src_test() {
 python_test() {
 	cd tests || die
 	PYTHONWARNINGS=ignore "${PYTHON}" run-tests.py \
-		--jobs $(makeopts_jobs) \
+		--jobs $(get_makeopts_jobs) \
 		--timeout 0 \
 		|| die "Tests fail with ${EPYTHON}"
 }

@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -85,5 +85,5 @@ python_test() {
 	cd "${BUILD_DIR}" || die
 
 	# Drop all tests needing network access
-	virtx epytest -n "$(makeopts_jobs)" -m "not network and not natural_earth" || die "test failed"
+	virtx epytest -n "$(get_makeopts_jobs)" -m "not network and not natural_earth" || die "test failed"
 }

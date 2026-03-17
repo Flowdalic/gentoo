@@ -183,7 +183,7 @@ src_compile() {
 }
 
 src_test() {
-	LD_LIBRARY_PATH="${S}" edo ./botan-test$(ver_cut 1) --test-threads="$(makeopts_jobs)"
+	LD_LIBRARY_PATH="${S}" edo ./botan-test$(ver_cut 1) --test-threads="$(get_makeopts_jobs)"
 }
 
 src_install() {

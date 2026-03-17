@@ -162,7 +162,7 @@ src_configure() {
 	lto-guarantee-fat
 
 	# Workaround for too many parallel processes requested, bug #506064
-	[[ "$(makeopts_jobs)" -gt 64 ]] && MAKEOPTS="${MAKEOPTS} -j64"
+	[[ "$(get_makeopts_jobs)" -gt 64 ]] && MAKEOPTS="${MAKEOPTS} -j64"
 
 	# We don't want to end up with -L/usr/lib on our linker lines
 	# which then gives us lots of
@@ -172,7 +172,7 @@ src_configure() {
 
 	OPTIONS=(
 		$(usex debug gentoodebug gentoorelease)
-		"-j$(makeopts_jobs)"
+		"-j$(get_makeopts_jobs)"
 		-q
 		-d+2
 		pch=off

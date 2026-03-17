@@ -782,7 +782,7 @@ src_test() {
 		ewarn "Test fails with a sandbox error (#328793) if run as root. Skipping tests..."
 		return 0
 	fi
-	TEST_JOBS="$(makeopts_jobs)" make test_harness || die "test failed"
+	TEST_JOBS="$(get_makeopts_jobs)" make test_harness || die "test failed"
 }
 
 src_install() {

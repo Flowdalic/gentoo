@@ -49,7 +49,7 @@ src_configure() {
 
 	cat >> setup.cfg <<-EOF || die
 	[build_ext]
-	parallel = $(makeopts_jobs)
+	parallel = $(get_makeopts_jobs)
 	EOF
 
 	# setuptools calls autotools (!)

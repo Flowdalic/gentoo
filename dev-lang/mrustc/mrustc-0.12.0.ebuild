@@ -59,7 +59,7 @@ src_compile() {
 		export CXX=${CHOST}-g++
 		tc-is-gcc || die "tc-is-gcc failed in spite of CC=${CC}"
 	fi
-	export PARLEVEL=$(makeopts_jobs)
+	export PARLEVEL=$(get_makeopts_jobs)
 	export RUSTC_VERSION=${MRUSTC_RUST_VER} # Pretend that we're using upstream-supported Rust
 	export MRUSTC_TARGET_VER=${RUSTC_VERSION%.*}
 	export RUSTCSRC="${WORKDIR}/rustc-${RUST_VERSION}-src"

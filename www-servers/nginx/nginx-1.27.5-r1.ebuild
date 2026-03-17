@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -877,7 +877,7 @@ src_test() {
 	local -x TEST_NGINX_BINARY="${S}/objs/nginx"
 	local -x TEST_NGINX_VERBOSE=1
 
-	prove -v -j $(makeopts_jobs) . || die
+	prove -v -j $(get_makeopts_jobs) . || die
 	popd > /dev/null || die
 }
 

@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -27,13 +27,13 @@ DEPEND="${RDEPEND}"
 DOCS=( AUTHORS INSTALL.md NEWS.md README.md )
 
 src_compile() {
-	./remake --jobs=$(makeopts_jobs) || die
+	./remake --jobs=$(get_makeopts_jobs) || die
 
 	docs_compile
 }
 
 src_test() {
-	./remake --jobs=$(makeopts_jobs) check || die
+	./remake --jobs=$(get_makeopts_jobs) check || die
 }
 
 src_install() {

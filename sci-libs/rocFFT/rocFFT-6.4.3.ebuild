@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -72,7 +72,7 @@ required_mem() {
 			# The default number of AMDGPU_TARGETS for rocFFT-4.3.0. May change in the future.
 			local NARCH=7
 		fi
-		echo "$(($(makeopts_jobs)*${NARCH}*25+2200))M" # A linear function estimating how much memory required
+		echo "$(($(get_makeopts_jobs)*${NARCH}*25+2200))M" # A linear function estimating how much memory required
 	fi
 }
 

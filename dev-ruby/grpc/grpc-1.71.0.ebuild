@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -25,7 +25,7 @@ ruby_add_rdepend "
 "
 
 each_ruby_configure() {
-	export GRPC_RUBY_BUILD_PROCS="$(makeopts_jobs)"
+	export GRPC_RUBY_BUILD_PROCS="$(get_makeopts_jobs)"
 
 	each_fakegem_configure
 }

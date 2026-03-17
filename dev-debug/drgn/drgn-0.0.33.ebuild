@@ -1,4 +1,4 @@
-# Copyright 2024-2025 Gentoo Authors
+# Copyright 2024-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -48,7 +48,7 @@ src_configure() {
 
 	cat >> setup.cfg <<-EOF || die
 	[build_ext]
-	parallel = $(makeopts_jobs)
+	parallel = $(get_makeopts_jobs)
 	EOF
 
 	# setuptools calls autotools (!)

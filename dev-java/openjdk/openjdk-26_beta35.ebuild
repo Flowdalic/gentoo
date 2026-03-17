@@ -285,11 +285,11 @@ src_configure() {
 
 src_compile() {
 	# Too brittle - gets confused by e.g. -Oline
-	export MAKEOPTS="-j$(makeopts_jobs) -l$(makeopts_loadavg)"
+	export MAKEOPTS="-j$(get_makeopts_jobs) -l$(get_makeopts_loadavg)"
 	unset GNUMAKEFLAGS MAKEFLAGS
 
 	local myemakeargs=(
-		JOBS=$(makeopts_jobs)
+		JOBS=$(get_makeopts_jobs)
 		LOG=debug
 		CFLAGS_WARNINGS_ARE_ERRORS= # No -Werror
 		NICE= # Use PORTAGE_NICENESS, don't adjust further down

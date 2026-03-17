@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -44,7 +44,7 @@ src_configure() {
 
 src_compile() {
 	unset CROSS_COMPILE
-	export CPUS=$(makeopts_jobs)
+	export CPUS=$(get_makeopts_jobs)
 	emake V=1 NOSTRIP=1
 }
 

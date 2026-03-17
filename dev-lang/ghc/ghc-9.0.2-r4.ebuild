@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -827,7 +827,7 @@ src_test() {
 	# bits are taken from 'validate'
 	local make_test_target='test' # can be fulltest
 	# not 'emake' as testsuite uses '$MAKE' without jobserver available
-	make $make_test_target stage=2 THREADS=$(makeopts_jobs)
+	make $make_test_target stage=2 THREADS=$(get_makeopts_jobs)
 }
 
 src_install() {

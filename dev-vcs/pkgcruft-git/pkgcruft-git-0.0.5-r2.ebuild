@@ -76,6 +76,6 @@ src_unpack() {
 }
 
 src_test() {
-	local -x NEXTEST_TEST_THREADS="$(makeopts_jobs)"
+	local -x NEXTEST_TEST_THREADS="$(get_makeopts_jobs)"
 	edo cargo nextest run $(usev !debug '--release') --color always --tests --no-fail-fast
 }

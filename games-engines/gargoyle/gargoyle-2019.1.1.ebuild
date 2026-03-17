@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Regarding licenses: libgarglk is licensed under the GPLv2. Bundled
@@ -80,7 +80,7 @@ src_compile() {
 		-sUSESDL=yes \
 		-sBUNDLEFONTS=no \
 		-dx \
-		-j$(makeopts_jobs) || die
+		-j$(get_makeopts_jobs) || die
 }
 
 src_install() {

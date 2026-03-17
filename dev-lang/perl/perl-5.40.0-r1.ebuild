@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -789,7 +789,7 @@ src_test() {
 		ewarn "Test fails with a sandbox error (#328793) if run as root. Skipping tests..."
 		return 0
 	fi
-	TEST_JOBS="$(makeopts_jobs)" make test_harness || die "test failed"
+	TEST_JOBS="$(get_makeopts_jobs)" make test_harness || die "test failed"
 }
 
 src_install() {

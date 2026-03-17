@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -55,7 +55,7 @@ src_install() {
 			compressor="zstd -15 -T1 -C -q --rm"
 		fi
 		find . -type f -print0 | \
-			xargs -0 -P $(makeopts_jobs) -I'{}' ${compressor} '{}'
+			xargs -0 -P $(get_makeopts_jobs) -I'{}' ${compressor} '{}'
 		assert
 		popd &>/dev/null || die
 	fi

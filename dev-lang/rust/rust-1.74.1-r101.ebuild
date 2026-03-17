@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -653,7 +653,7 @@ mrustc_bootstrap() {
 	export REAL_LIBRARY_PATH_VAR="LD_LIBRARY_PATH"
 
 	# These flags are used in every invocation of our bootstrap `cargo`.
-	local cargo_flags="--target ${CFG_COMPILER_HOST_TRIPLE} -j $(makeopts_jobs) --release --verbose"
+	local cargo_flags="--target ${CFG_COMPILER_HOST_TRIPLE} -j $(get_makeopts_jobs) --release --verbose"
 
 	# for bootstrap, let's using the built-in stdlib of compiler (could be the bundled one)
 	filter-flags '-stdlib=*'
@@ -717,7 +717,7 @@ mrustc_bootstrap() {
 	local mrustc_sysroot="${BROOT}/usr/lib/rust/mrustc-${MRUSTC_VERSION}/lib/rustlib/${CFG_COMPILER_HOST_TRIPLE}/lib"
 	local minicargo_common_args=(
 		"-L" "${mrustc_sysroot}"
-		"-j" "$(makeopts_jobs)"
+		"-j" "$(get_makeopts_jobs)"
 		"--vendor-dir" "${S}/vendor"
 		"--manifest-overrides"
 		"${BROOT}/usr/share/mrustc-${MRUSTC_VERSION}/patches/rustc-${MRUSTC_RUST_VERSION}-overrides.toml"
@@ -759,7 +759,7 @@ mrustc_bootstrap() {
 	mkdir -p "${stage0_sysroot_lib}" || die "Failed to create stage0 directory"
 
 	elog "Building 'sysroot' using bootstrap rustc (mrustc-stage0) ..."
-	edo env MRUSTC_PATH="${stage0}/rustc-build/rustc" minicargo -j $(makeopts_jobs) --vendor-dir "${S}"/vendor \
+	edo env MRUSTC_PATH="${stage0}/rustc-build/rustc" minicargo -j $(get_makeopts_jobs) --vendor-dir "${S}"/vendor \
 		--script-overrides  "${BROOT}/usr/share/mrustc-0.11.2/script-overrides/stable-${MRUSTC_RUST_VERSION}-linux/" \
 		--output-dir "${stage0_sysroot_lib}" "${S}"/library/sysroot ||
 			die "Failed to build sysroot with bootstrap rust (mrustc-stage0)"
@@ -884,7 +884,7 @@ mrustc_bootstrap() {
 
 src_compile() {
 	use mrustc-bootstrap && mrustc_bootstrap
-	RUST_BACKTRACE=1 "${EPYTHON}" ./x.py build -v --config="${S}"/config.toml -j$(makeopts_jobs) || die
+	RUST_BACKTRACE=1 "${EPYTHON}" ./x.py build -v --config="${S}"/config.toml -j$(get_makeopts_jobs) || die
 }
 
 src_test() {
@@ -926,7 +926,7 @@ src_test() {
 		local t="src/test/${i}"
 		einfo "rust_src_test: running ${t}"
 		if ! RUST_BACKTRACE=1 "${EPYTHON}" ./x.py test -vv --config="${S}"/config.toml \
-				-j$(makeopts_jobs) --no-doc --no-fail-fast "${t}"
+				-j$(get_makeopts_jobs) --no-doc --no-fail-fast "${t}"
 		then
 				failed+=( "${t}" )
 				eerror "rust_src_test: ${t} failed"
@@ -940,7 +940,7 @@ src_test() {
 }
 
 src_install() {
-	DESTDIR="${D}" "${EPYTHON}" ./x.py install -v --config="${S}"/config.toml -j$(makeopts_jobs) || die
+	DESTDIR="${D}" "${EPYTHON}" ./x.py install -v --config="${S}"/config.toml -j$(get_makeopts_jobs) || die
 
 	# bug #689562, #689160
 	rm -v "${ED}/usr/lib/${PN}/${PV}/etc/bash_completion.d/cargo" || die

@@ -77,7 +77,7 @@ python_test() {
 	# Tests have non-standard assumptions about PYTHONPATH,
 	# and don't work with ${BUILD_DIR}/lib.
 	PYTHONPATH=. "${EPYTHON}" tests/runtests.py --settings=test_sqlite \
-		-v2 --parallel="${EPYTEST_JOBS:-$(makeopts_jobs)}" ||
+		-v2 --parallel="${EPYTEST_JOBS:-$(get_makeopts_jobs)}" ||
 		die "Tests fail with ${EPYTHON}"
 }
 

@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # shellcheck disable=SC2207
@@ -613,7 +613,7 @@ src_configure() {
 			mycmakeargs+=(
 				-DHIPRT_ROOT_DIR="${ESYSROOT}/usr/lib/hiprt/2.5"
 				-DHIP_HIPCC_FLAGS="-fcf-protection=none"
-				-DHIPRT_COMPILER_PARALLEL_JOBS="$(makeopts_jobs)"
+				-DHIPRT_COMPILER_PARALLEL_JOBS="$(get_makeopts_jobs)"
 			)
 		fi
 	fi
@@ -845,7 +845,7 @@ src_install() {
 		addpredict /dev/nvidiactl
 
 		cd "${CMAKE_USE_DIR}/doc/doxygen" || die
-		sed -e "/^NUM_PROC_THREADS/s/1/$(makeopts_jobs)/" -i Doxyfile || die
+		sed -e "/^NUM_PROC_THREADS/s/1/$(get_makeopts_jobs)/" -i Doxyfile || die
 		edob -m "Generating Blender C/C++ API docs ..." doxygen -u Doxyfile
 		edob -m "Building API docs" doxygen
 
@@ -853,7 +853,7 @@ src_install() {
 		einfo "Generating (BPY) Blender Python API docs ..."
 		edo "${BUILD_DIR}"/bin/blender --background --python "doc/python_api/sphinx_doc_gen.py" -noaudio
 
-		edo sphinx-build -j "$(makeopts_jobs)" doc/python_api/sphinx-in doc/python_api/BPY_API
+		edo sphinx-build -j "$(get_makeopts_jobs)" doc/python_api/sphinx-in doc/python_api/BPY_API
 
 		cd "${CMAKE_USE_DIR}" || die
 		docinto "html/API/python"

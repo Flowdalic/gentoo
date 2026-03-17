@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -52,7 +52,7 @@ src_compile() {
 	tc-export CC RANLIB
 	export AR="$(tc-getAR) cru" #739376
 
-	jam -q -dx -j$(makeopts_jobs) || die
+	jam -q -dx -j$(get_makeopts_jobs) || die
 }
 
 src_install() {

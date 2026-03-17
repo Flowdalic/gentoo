@@ -147,7 +147,7 @@ src_configure() {
 		-Dnanobind_DIR="$(python_get_sitedir)/nanobind/cmake"
 		-DPython_EXECUTABLE="${PYTHON}"
 		-DROCM_SYMLINK_LIBS=OFF
-		-DTENSILELITE_BUILD_PARALLEL_LEVEL=$(makeopts_jobs)
+		-DTENSILELITE_BUILD_PARALLEL_LEVEL=$(get_makeopts_jobs)
 		-DHIPBLASLT_BUILD_TESTING="$(usex test ON OFF)"
 		-Wno-dev
 	)

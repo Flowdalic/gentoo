@@ -405,7 +405,7 @@ src_test() {
 	testgrid_opts+=(
 		# -refresh 5 # default is 60
 		-overwrite
-		-parallel "$(makeopts_jobs)"
+		-parallel "$(get_makeopts_jobs)"
 	)
 	cat >> "${test_file}" <<- _EOF_ || die
 		testgrid -outdir "${BUILD_DIR}/test_results" ${testgrid_opts[@]}

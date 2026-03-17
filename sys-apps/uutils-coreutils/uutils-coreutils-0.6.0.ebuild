@@ -110,7 +110,7 @@ src_compile() {
 
 src_test() {
 	local -x RUST_BACKTRACE=full
-	local -x NEXTEST_TEST_THREADS="$(makeopts_jobs)"
+	local -x NEXTEST_TEST_THREADS="$(get_makeopts_jobs)"
 
 	# Nicer output for nextest vs test
 	emake "${makeargs[@]}" \

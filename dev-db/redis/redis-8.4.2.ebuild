@@ -130,7 +130,7 @@ src_compile() {
 
 src_test() {
 	local runtestargs=(
-		--clients "$(makeopts_jobs)" # see bug #649868
+		--clients "$(get_makeopts_jobs)" # see bug #649868
 
 		# The Active defrag for argv test fails with edge values, it does not seem to be
 		# critical issue, see https://github.com/redis/redis/issues/14006

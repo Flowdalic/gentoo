@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -145,7 +145,7 @@ src_configure() {
 		MONGO_GIT_HASH="b60fc6875b5fb4b63cc0dbbd8dda0d6d6277921a"
 		--disable-warnings-as-errors
 		--force-jobs # Reapply #906897, fix #935274
-		--jobs="$(makeopts_jobs)"
+		--jobs="$(get_makeopts_jobs)"
 		--use-system-boost
 		--use-system-snappy
 		--use-system-stemmer

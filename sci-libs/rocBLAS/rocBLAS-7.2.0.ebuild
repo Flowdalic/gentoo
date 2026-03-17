@@ -103,7 +103,7 @@ src_configure() {
 		-DLINK_BLIS=OFF
 		-DTensile_COMPILER="${CXX}"
 		-DTensile_ROOT="${EPREFIX}/usr/share/Tensile"
-		-DTensile_CPU_THREADS="$(makeopts_jobs)"
+		-DTensile_CPU_THREADS="$(get_makeopts_jobs)"
 		-Wno-dev
 	)
 

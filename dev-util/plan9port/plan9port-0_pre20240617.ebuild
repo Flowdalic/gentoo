@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -119,7 +119,7 @@ src_compile() {
 	# The INSTALL script builds mk then [re]builds everything using that
 	einfo "Compiling Plan 9 from User Space can take a very long time"
 	einfo "depending on the speed of your computer. Please be patient!"
-	NPROC="$(makeopts_jobs)" ./INSTALL -b ||
+	NPROC="$(get_makeopts_jobs)" ./INSTALL -b ||
 		die "Please report bugs to bugs.gentoo.org, NOT Plan9Port."
 }
 

@@ -377,7 +377,7 @@ python_configure_all() {
 		--qt="$(ver_cut 1-3)"
 		--qtpaths="$(qt6_get_bindir)/qtpaths"
 		--verbose-build
-		--parallel="$(makeopts_jobs)"
+		--parallel="$(get_makeopts_jobs)"
 		"$(usex debug "--debug" "--relwithdebinfo")"
 		"--$(usex doc "build" "skip")-docs"
 		"--$(usex numpy "enable" "disable")-numpy-support"

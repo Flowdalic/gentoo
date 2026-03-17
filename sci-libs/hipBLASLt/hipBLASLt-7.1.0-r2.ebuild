@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -146,7 +146,7 @@ src_configure() {
 		-Dnanobind_DIR="$(python_get_sitedir)/nanobind/cmake"
 		-DPython_EXECUTABLE="${PYTHON}"
 		-DROCM_SYMLINK_LIBS=OFF
-		-DTENSILELITE_BUILD_PARALLEL_LEVEL=$(makeopts_jobs)
+		-DTENSILELITE_BUILD_PARALLEL_LEVEL=$(get_makeopts_jobs)
 		-DHIPBLASLT_BUILD_TESTING="$(usex test ON OFF)"
 		-Wno-dev
 	)

@@ -99,7 +99,7 @@ src_configure() {
 		--no-faust
 		--no-ldconfig
 		--shared-lib
-		--jobs=$(makeopts_jobs)
+		--jobs=$(get_makeopts_jobs)
 		$(use_enable nls)
 		$(usev !bluetooth --no-bluez)
 		$(usev debug --debug)

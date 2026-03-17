@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Gentoo Authors
+# Copyright 2020-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -141,7 +141,7 @@ src_configure() {
 
 src_compile() {
 	edo env RUST_BACKTRACE=1 \
-		"${EPYTHON}" ./x.py build -vv --config="${S}"/config.toml -j$(makeopts_jobs) \
+		"${EPYTHON}" ./x.py build -vv --config="${S}"/config.toml -j$(get_makeopts_jobs) \
 		library/std --stage 0
 }
 

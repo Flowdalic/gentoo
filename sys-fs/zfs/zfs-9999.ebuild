@@ -282,7 +282,7 @@ src_configure() {
 
 		# See gentoo.patch
 		GENTOO_MAKEARGS_EVAL="${MODULES_MAKEARGS[*]@Q}"
-		TEST_JOBS="$(makeopts_jobs)"
+		TEST_JOBS="$(get_makeopts_jobs)"
 	)
 
 	econf "${myconf[@]}"

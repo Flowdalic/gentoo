@@ -1,4 +1,4 @@
-# Copyright 2022-2025 Gentoo Authors
+# Copyright 2022-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -81,7 +81,7 @@ src_configure() {
 
 src_test() {
 	cd "${BUILD_DIR}"/src/tests || die
-	ctest -j$(makeopts_jobs) -R .* --output-on-failure || die
+	ctest -j$(get_makeopts_jobs) -R .* --output-on-failure || die
 }
 
 src_install() {

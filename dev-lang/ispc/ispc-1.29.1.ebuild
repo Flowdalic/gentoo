@@ -82,7 +82,7 @@ src_configure() {
 src_test() {
 	# Inject path to prevent using system ispc
 	local -x PATH="${BUILD_DIR}/bin:${PATH}"
-	"${EPYTHON}" ./scripts/run_tests.py "-j$(makeopts_jobs)" -v ||
+	"${EPYTHON}" ./scripts/run_tests.py "-j$(get_makeopts_jobs)" -v ||
 		die "Testing failed under ${EPYTHON}"
 }
 

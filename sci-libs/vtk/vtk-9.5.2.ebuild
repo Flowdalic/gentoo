@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -182,9 +182,9 @@ vtk_check_reqs() {
 	# for the more common MAKEOPTS, in case NINJAOPTS is empty
 	local jobs=1
 	if [[ -n "${NINJAOPTS}" ]]; then
-		jobs=$(makeopts_jobs "${NINJAOPTS}" "$(get_nproc)")
+		jobs=$(get_makeopts_jobs "${NINJAOPTS}" "$(get_nproc)")
 	elif [[ -n "${MAKEOPTS}" ]]; then
-		jobs=$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
+		jobs=$(get_makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
 	fi
 
 	if use cuda; then

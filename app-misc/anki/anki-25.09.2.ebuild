@@ -1,4 +1,4 @@
-# Copyright 2022-2025 Gentoo Authors
+# Copyright 2022-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -258,7 +258,7 @@ python_test() {
 }
 
 python_test_all() {
-	local -x NEXTEST_TEST_THREADS="$(makeopts_jobs)"
+	local -x NEXTEST_TEST_THREADS="$(get_makeopts_jobs)"
 	edo "${CARGO}" nextest run $(usev !debug '--release') \
 			--color always \
 			--all-features \

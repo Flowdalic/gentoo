@@ -231,7 +231,7 @@ src_prepare() {
 	default
 
 	# Make cargo respect MAKEOPTS
-	export CARGO_BUILD_JOBS="$(makeopts_jobs)"
+	export CARGO_BUILD_JOBS="$(get_makeopts_jobs)"
 
 	# Workaround for bgo #915651,915651,929013 on musl
 	if ! use elibc_glibc ; then

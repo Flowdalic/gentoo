@@ -1,4 +1,4 @@
-# Copyright 2022-2025 Gentoo Authors
+# Copyright 2022-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -53,7 +53,7 @@ python_configure_all() {
 	append-cxxflags ${CPPFLAGS} # respect CPPFLAGS notably for DISTUTILS_EXT=1
 
 	DISTUTILS_ARGS=(
-		--jobs="$(makeopts_jobs)"
+		--jobs="$(get_makeopts_jobs)"
 		--qmake="$(qt6_get_bindir)"/qmake
 		--qmake-setting="$(qt6_get_qmake_args)"
 		--verbose

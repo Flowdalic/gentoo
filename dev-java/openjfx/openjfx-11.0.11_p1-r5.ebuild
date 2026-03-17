@@ -1,4 +1,4 @@
-# Copyright 2019-2025 Gentoo Authors
+# Copyright 2019-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -210,7 +210,7 @@ src_configure() {
 		GRADLE_VERSION_CHECK = false
 		LINT = none
 		CONF = $(usex debug DebugNative Release)
-		NUM_COMPILE_THREADS = $(makeopts_jobs)
+		NUM_COMPILE_THREADS = $(get_makeopts_jobs)
 		JFX_DEPS_URL = ${T}/jars
 		COMPANY_NAME = "Gentoo"
 	_EOF_

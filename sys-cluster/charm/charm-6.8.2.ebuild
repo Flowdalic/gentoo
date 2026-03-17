@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -113,7 +113,7 @@ src_compile() {
 	local build_version="$(usex mpi "mpi" "net")-linux$(usex amd64 "-amd64" '')"
 	local build_options="$(get_opts)"
 	#build only accepts -j from MAKEOPTS
-	local build_commandline="${build_version} ${build_options} -j$(makeopts_jobs)"
+	local build_commandline="${build_version} ${build_options} -j$(get_makeopts_jobs)"
 
 	# Build charmm++ first.
 	einfo "running ./build charm++ ${build_commandline}"

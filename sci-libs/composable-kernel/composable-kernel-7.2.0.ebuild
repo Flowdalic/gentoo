@@ -55,7 +55,7 @@ ck_check-reqs() {
 	fi
 
 	# It takes ~3GB of RAM per build thread
-	local user_jobs=$(makeopts_jobs)
+	local user_jobs=$(get_makeopts_jobs)
 	local available_memory_mb=$(free -m | awk '/Mem:/ {print $7}')
 	local max_jobs=$(( available_memory_mb / 2048 ))
 	max_jobs=$(( max_jobs < 1 ? 1 : max_jobs ))

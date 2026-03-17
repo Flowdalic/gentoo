@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -284,7 +284,7 @@ src_compile() {
 src_test() {
 	# TODO: Maybe run swig tests for each language?
 	#if has_version ~${CATEGORY}/${P} ; then
-		emake -Onone PARALLEL="$(makeopts_jobs)" check
+		emake -Onone PARALLEL="$(get_makeopts_jobs)" check
 	#else
 	#	ewarn "The test suite shows errors when there is an older version of"
 	#	ewarn "${CATEGORY}/${PN} installed. Please install =${CATEGORY}/${P}*"

@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
@@ -48,7 +48,7 @@ python_test() {
 	cd tests || die
 
 	"${EPYTHON}" run-tests.py \
-		--jobs="$(makeopts_jobs "${MAKEOPTS}")" \
+		--jobs="$(get_makeopts_jobs "${MAKEOPTS}")" \
 		--with-hg="${ESYSROOT}/usr/bin/hg" \
 		|| die
 }

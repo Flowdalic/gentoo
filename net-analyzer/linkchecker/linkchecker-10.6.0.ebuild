@@ -52,7 +52,7 @@ DOCS=(
 python_test() {
 	# epytest overrides bs4 ignores from pytest.ini
 	# and also outputs multiple warnings about unclosed test sockets
-	pytest -vra -n "$(makeopts_jobs)" || die
+	pytest -vra -n "$(get_makeopts_jobs)" || die
 }
 
 python_install_all() {

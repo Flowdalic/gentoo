@@ -88,7 +88,7 @@ src_configure() {
 		$(usex debug "" release=1)
 		progress=true
 		stats=1
-		threads="$(makeopts_jobs)"
+		threads="$(get_makeopts_jobs)"
 		verbose=1
 		check_lld= # disable opportunistic lld
 

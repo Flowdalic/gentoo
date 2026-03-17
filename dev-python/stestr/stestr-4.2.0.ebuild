@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -38,6 +38,6 @@ BDEPEND="
 python_test() {
 	stestr init || die
 	stestr run --test-path stestr/tests \
-		--concurrency "${EPYTEST_JOBS:-$(makeopts_jobs)}" ||
+		--concurrency "${EPYTEST_JOBS:-$(get_makeopts_jobs)}" ||
 		die "Tests failed with ${EPYTHON}"
 }

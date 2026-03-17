@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -144,16 +144,16 @@ src_configure() {
 }
 
 src_compile() {
-	rake V=1 -j$(makeopts_jobs) || die
+	rake V=1 -j$(get_makeopts_jobs) || die
 }
 
 src_test() {
-	rake V=1 -j$(makeopts_jobs) tests:unit || die
-	rake V=1 -j$(makeopts_jobs) tests:run_unit || die
+	rake V=1 -j$(get_makeopts_jobs) tests:unit || die
+	rake V=1 -j$(get_makeopts_jobs) tests:run_unit || die
 }
 
 src_install() {
-	DESTDIR="${D}" rake -j$(makeopts_jobs) install || die
+	DESTDIR="${D}" rake -j$(get_makeopts_jobs) install || die
 
 	einstalldocs
 	dodoc NEWS.md

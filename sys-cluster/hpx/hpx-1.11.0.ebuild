@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -61,7 +61,7 @@ hpx_memory_requirement() {
 	if [[ -z ${MAKEOPTS} ]] ; then
 		echo "2G"
 	else
-		local jobs=$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
+		local jobs=$(get_makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
 		echo "${jobs}G"
 	fi
 }

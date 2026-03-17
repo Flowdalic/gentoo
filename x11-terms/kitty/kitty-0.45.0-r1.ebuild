@@ -106,7 +106,7 @@ src_prepare() {
 
 	# sed unfortunately feels easier on maintenance than patches here
 	local sedargs=(
-		-e "/num_workers =/s/=.*/= $(makeopts_jobs)/"
+		-e "/num_workers =/s/=.*/= $(get_makeopts_jobs)/"
 		-e "s/cflags.append.*-O3.*/pass/" -e 's/-O3//'
 		-e "s/cflags.append(fortify_source)/pass/" # use toolchain's _f_s
 		-e "s/ld_flags.append('-[sw]')/pass/"
@@ -140,7 +140,7 @@ src_compile() {
 	local -x PKGCONFIG_EXE=$(tc-getPKG_CONFIG)
 
 	go-env_set_compile_environment
-	local -x GOFLAGS="-p=$(makeopts_jobs) -v -x -buildvcs=false"
+	local -x GOFLAGS="-p=$(get_makeopts_jobs) -v -x -buildvcs=false"
 	use ppc64 && [[ $(tc-endian) == big ]] || GOFLAGS+=" -buildmode=pie"
 
 	local conf=(

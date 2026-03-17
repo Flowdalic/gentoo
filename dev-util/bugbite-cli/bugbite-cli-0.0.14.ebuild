@@ -1,4 +1,4 @@
-# Copyright 2024-2025 Gentoo Authors
+# Copyright 2024-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -50,7 +50,7 @@ src_configure() {
 }
 
 src_test() {
-	local -x NEXTEST_TEST_THREADS="$(makeopts_jobs)"
+	local -x NEXTEST_TEST_THREADS="$(get_makeopts_jobs)"
 	edo cargo nextest run $(usev !debug '--release') --color always --features test --tests ${static_stuff}
 }
 

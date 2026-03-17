@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -60,7 +60,7 @@ python_test() {
 	# Use dev-libs/pocl for testing; ignore any other OpenCL devices that might be present
 	local -x PYOPENCL_TEST="portable:cpu"
 	# Set the number of threads to match MAKEOPTS
-	local -x POCL_MAX_PTHREAD_COUNT=$(makeopts_jobs)
+	local -x POCL_MAX_PTHREAD_COUNT=$(get_makeopts_jobs)
 	# Change to the 'test' directory so that python does not try to import pyopencl from the source directory
 	# (Importing from the source directory fails, because the compiled '_cl' module is only in the build directory)
 	pushd test >/dev/null || die

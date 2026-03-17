@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -121,7 +121,7 @@ multilib_src_configure() {
 	fi
 
 	# LIBAOM_TEST_PROCS is added by our tests-parallel.patch
-	export LIBAOM_TEST_PROCS="$(makeopts_jobs)"
+	export LIBAOM_TEST_PROCS="$(get_makeopts_jobs)"
 
 	cmake_src_configure
 }

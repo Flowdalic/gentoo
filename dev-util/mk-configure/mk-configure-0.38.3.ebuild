@@ -1,4 +1,4 @@
-# Copyright 2023-2025 Gentoo Authors
+# Copyright 2023-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -23,7 +23,7 @@ RDEPEND="
 BDEPEND="${RDEPEND}"
 
 src_configure() {
-	local jobs="$(makeopts_jobs)"
+	local jobs="$(get_makeopts_jobs)"
 	unset MAKEOPTS
 
 	export MAKEOPTS="-j${jobs}"

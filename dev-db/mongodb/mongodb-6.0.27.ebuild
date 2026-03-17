@@ -136,7 +136,7 @@ src_configure() {
 
 		--disable-warnings-as-errors
 		--force-jobs # Reapply #906897, fix #935274
-		--jobs="$(makeopts_jobs)"
+		--jobs="$(get_makeopts_jobs)"
 		--use-system-boost
 		--use-system-snappy
 		--use-system-stemmer

@@ -87,7 +87,7 @@ src_compile() {
 	local -a nimflags=(
 		-d:release
 		--listCmd
-		--parallelBuild:$(makeopts_jobs)
+		--parallelBuild:$(get_makeopts_jobs)
 	)
 
 	edo ./bin/nim compile "${nimflags[@]}" koch

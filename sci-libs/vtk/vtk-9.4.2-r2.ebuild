@@ -185,9 +185,9 @@ vtk_check_reqs() {
 	# for the more common MAKEOPTS, in case NINJAOPTS is empty
 	local jobs=1
 	if [[ -n "${NINJAOPTS}" ]]; then
-		jobs=$(makeopts_jobs "${NINJAOPTS}" "$(get_nproc)")
+		jobs=$(get_makeopts_jobs "${NINJAOPTS}" "$(get_nproc)")
 	elif [[ -n "${MAKEOPTS}" ]]; then
-		jobs=$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
+		jobs=$(get_makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
 	fi
 
 	if use cuda; then

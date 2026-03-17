@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -87,7 +87,7 @@ src_compile() {
 	local -a nimflags=(
 		-d:release
 		--listCmd
-		--parallelBuild:$(makeopts_jobs)
+		--parallelBuild:$(get_makeopts_jobs)
 	)
 
 	edo ./bin/nim compile "${nimflags[@]}" koch

@@ -122,7 +122,7 @@ python_configure_all() {
 	}
 
 	DISTUTILS_ARGS=(
-		--jobs="$(makeopts_jobs)"
+		--jobs="$(get_makeopts_jobs)"
 		--qmake="$(qt6_get_bindir)"/qmake
 		--qmake-setting="$(qt6_get_qmake_args)"
 		--verbose

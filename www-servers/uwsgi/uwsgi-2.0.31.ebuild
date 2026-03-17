@@ -274,7 +274,7 @@ python_install_symlinks() {
 src_compile() {
 	mkdir -p "${T}/plugins" || die
 
-	export CPUCOUNT="$(makeopts_jobs)"
+	export CPUCOUNT="$(get_makeopts_jobs)"
 
 	${EPYTHON} uwsgiconfig.py --build gentoo || die "building uwsgi failed"
 

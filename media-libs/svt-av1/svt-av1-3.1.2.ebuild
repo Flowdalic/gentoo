@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Gentoo Authors
+# Copyright 2020-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -66,6 +66,6 @@ multilib_src_test() {
 		# Upstream uses this, and this gives a significant time save in running these tests.
 		# 2025-05-19T19:39:25 >>> media-libs/svt-av1-3.0.2: 1:46:14
 		# 2025-05-20T16:10:34 >>> media-libs/svt-av1-3.0.2: 20′35″
-		edo gtest-parallel --workers "$(makeopts_jobs)" "${BUILD_DIR}"/SvtAv1UnitTests
+		edo gtest-parallel --workers "$(get_makeopts_jobs)" "${BUILD_DIR}"/SvtAv1UnitTests
 	fi
 }

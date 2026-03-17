@@ -127,7 +127,7 @@ src_prepare() {
 
 	# force the correct number of jobs
 	# https://bugs.gentoo.org/737660
-	local jobs=$(makeopts_jobs)
+	local jobs=$(get_makeopts_jobs)
 	sed -i -e "s:-j0:-j${jobs}:" Makefile.pre.in || die
 	sed -i -e "/self\.parallel/s:True:${jobs}:" setup.py || die
 
@@ -296,7 +296,7 @@ src_configure() {
 	if use pgo; then
 		local profile_task_flags=(
 			-m test
-			"-j$(makeopts_jobs)"
+			"-j$(get_makeopts_jobs)"
 			--pgo-extended
 			-u-network
 
@@ -502,7 +502,7 @@ src_test() {
 	local test_opts=(
 		--verbose3
 		-u-network
-		-j "$(makeopts_jobs)"
+		-j "$(get_makeopts_jobs)"
 		"${COMMON_TEST_SKIPS[@]}"
 	)
 

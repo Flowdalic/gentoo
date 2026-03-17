@@ -225,7 +225,7 @@ src_install() {
 
 	einfo "Byte-compiling Python standard library..."
 	# exclude list from CPython Makefile.pre.in
-	"${PYTHON}" -m compileall -j "$(makeopts_jobs)" -o 0 -o 1 -o 2 \
+	"${PYTHON}" -m compileall -j "$(get_makeopts_jobs)" -o 0 -o 1 -o 2 \
 		-x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
 		--hardlink-dupes -q -f -d "${dest}" "${ED}${dest}" || die
 

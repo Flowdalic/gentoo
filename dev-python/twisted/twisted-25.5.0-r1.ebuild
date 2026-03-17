@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -129,7 +129,7 @@ python_test() {
 	# for py3.13, see
 	# https://github.com/twisted/twisted/pull/12092#issuecomment-2194326096
 	local -x LINES=25 COLUMNS=80
-	"${EPYTHON}" -m twisted.trial  -j "$(makeopts_jobs)" twisted ||
+	"${EPYTHON}" -m twisted.trial  -j "$(get_makeopts_jobs)" twisted ||
 		die "Tests failed with ${EPYTHON}"
 }
 

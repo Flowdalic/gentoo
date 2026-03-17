@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -49,7 +49,7 @@ src_prepare() {
 
 src_compile() {
 	emake release=1 \
-		FLAGS="--link-flags=\"${LDFLAGS}\" --verbose --threads $(makeopts_jobs)"
+		FLAGS="--link-flags=\"${LDFLAGS}\" --verbose --threads $(get_makeopts_jobs)"
 }
 
 src_install() {

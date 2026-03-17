@@ -585,7 +585,7 @@ src_configure() {
 		if use hiprt; then
 			mycmakeargs+=(
 				-DHIPRT_ROOT_DIR="${ESYSROOT}/usr/lib/hiprt/2.5"
-				-DHIPRT_COMPILER_PARALLEL_JOBS="$(makeopts_jobs)"
+				-DHIPRT_COMPILER_PARALLEL_JOBS="$(get_makeopts_jobs)"
 			)
 		fi
 	fi

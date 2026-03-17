@@ -169,7 +169,7 @@ src_configure() {
 	# and use -j/-l parsed out from the original MAKEOPTS, then use that.
 	# Newer Portage sets this option by default in GNUMAKEFLAGS if nothing
 	# is set by the user in MAKEOPTS. See bug #900929 and bug #728424.
-	local makeopts_tmp="-j$(makeopts_jobs) -l$(makeopts_loadavg)"
+	local makeopts_tmp="-j$(get_makeopts_jobs) -l$(get_makeopts_loadavg)"
 	unset MAKEOPTS MAKEFLAGS GNUMAKEFLAGS
 	export MAKEOPTS="${makeopts_tmp}"
 

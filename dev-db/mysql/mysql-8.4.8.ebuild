@@ -412,7 +412,7 @@ src_test() {
 	# parallel tests without a tmpfs are flaky due to timeouts.
 	if mountpoint -q /dev/shm ; then
 		local VARDIR="/dev/shm/mysql-var-${MTR_BUILD_THREAD}"
-		local -x MTR_PARALLEL=${MTR_PARALLEL:-$(makeopts_jobs)}
+		local -x MTR_PARALLEL=${MTR_PARALLEL:-$(get_makeopts_jobs)}
 	else
 		ewarn "/dev/shm not mounted, setting default MTR_PARALLEL to 1. Tests will take a long time"
 		local VARDIR="${T}/vardir"

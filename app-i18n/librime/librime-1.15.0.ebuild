@@ -1,4 +1,4 @@
-# Copyright 2012-2025 Gentoo Authors
+# Copyright 2012-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -45,7 +45,7 @@ src_configure() {
 
 	local mycmakeargs=(
 		-DBUILD_TEST=$(usex test)
-		-DCMAKE_BUILD_PARALLEL_LEVEL=$(makeopts_jobs)
+		-DCMAKE_BUILD_PARALLEL_LEVEL=$(get_makeopts_jobs)
 		-DENABLE_EXTERNAL_PLUGINS=ON
 		-DINSTALL_PRIVATE_HEADERS=ON
 	)

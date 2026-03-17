@@ -61,5 +61,5 @@ src_configure() {
 }
 
 src_test() {
-	lit -vv "-j${LIT_JOBS:-$(makeopts_jobs)}" "${BUILD_DIR}/test" || die
+	lit -vv "-j${LIT_JOBS:-$(get_makeopts_jobs)}" "${BUILD_DIR}/test" || die
 }

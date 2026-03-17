@@ -83,7 +83,7 @@ src_test() {
 	# FAIL [   0.045s] pkgcruft::pkgcruft show::reports::sets
 	unset CLICOLOR CLICOLOR_FORCE
 
-	local -x NEXTEST_TEST_THREADS="$(makeopts_jobs)"
+	local -x NEXTEST_TEST_THREADS="$(get_makeopts_jobs)"
 
 	edo ${CARGO} nextest run $(usev !debug '--release') \
 		--color always \

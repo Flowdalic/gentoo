@@ -48,7 +48,7 @@ src_prepare() {
 
 src_compile() {
 	emake release=1 \
-		FLAGS="--link-flags=\"${LDFLAGS}\" --verbose --threads $(makeopts_jobs)"
+		FLAGS="--link-flags=\"${LDFLAGS}\" --verbose --threads $(get_makeopts_jobs)"
 }
 
 src_install() {

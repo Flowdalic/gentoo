@@ -1,4 +1,4 @@
-# Copyright 2018-2024 Gentoo Authors
+# Copyright 2018-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -39,19 +39,19 @@ src_configure() {
 }
 
 src_compile() {
-	edo ./do -j$(makeopts_jobs) build
+	edo ./do -j$(get_makeopts_jobs) build
 }
 
 src_test() {
 	local ARCH= CFLAGS= CXXFLAGS= LDFLAGS=
-	edo ./do -j$(makeopts_jobs) test
+	edo ./do -j$(get_makeopts_jobs) test
 }
 
 src_install() {
 	DESTDIR="${D}" \
 	DOCDIR="${D}/usr/share/doc/${PF}" \
 	LIBDIR="${D}/$(python_get_sitedir)/${PN}" \
-	edo ./do -j$(makeopts_jobs) \
+	edo ./do -j$(get_makeopts_jobs) \
 		install
 
 	python_fix_shebang "${D}"

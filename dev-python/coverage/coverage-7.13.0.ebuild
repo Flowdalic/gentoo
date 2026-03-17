@@ -76,7 +76,7 @@ python_test() {
 	# TODO: figure out why they can't be imported inside test env
 	local -x COVERAGE_NO_CONTRACTS=1
 
-	local jobs=${EPYTEST_JOBS:-$(makeopts_jobs)}
+	local jobs=${EPYTEST_JOBS:-$(get_makeopts_jobs)}
 	local xdist_args=()
 	if [[ ${jobs} -gt 1 ]]; then
 		# required upstream to avoid cross-test conflicts

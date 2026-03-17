@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -1123,7 +1123,7 @@ multilib_src_configure() {
 		)
 		if use vtk; then
 			mycmakeargs+=(
-				-DVTK_MPI_NUMPROCS="$(makeopts_jobs)" # TODO
+				-DVTK_MPI_NUMPROCS="$(get_makeopts_jobs)" # TODO
 			)
 		fi
 	fi
@@ -1347,7 +1347,7 @@ multilib_src_test() {
 
 		local test_opts_base=(
 			--skip_unstable=1
-			--test_threads="$(makeopts_jobs)"
+			--test_threads="$(get_makeopts_jobs)"
 		)
 
 		local results=()

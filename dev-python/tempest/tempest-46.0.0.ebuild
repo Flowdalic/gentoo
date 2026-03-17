@@ -72,6 +72,6 @@ python_compile() {
 python_test() {
 	local -x OS_LOG_CAPTURE=1 OS_STDOUT_CAPTURE=1 OS_STDERR_CAPTURE=1
 	local -x OS_TEST_TIMEOUT=300
-	stestr --test-path ./tempest/tests run --concurrency="$(makeopts_jobs)" ||
+	stestr --test-path ./tempest/tests run --concurrency="$(get_makeopts_jobs)" ||
 		die "Tests failed for ${EPYTHON}"
 }

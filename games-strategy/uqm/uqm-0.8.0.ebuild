@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -53,7 +53,7 @@ src_prepare() {
 }
 
 src_compile() {
-	echo | MAKE_VERBOSE=1 ./build.sh -j$(makeopts_jobs) uqm || die
+	echo | MAKE_VERBOSE=1 ./build.sh -j$(get_makeopts_jobs) uqm || die
 }
 
 src_install() {

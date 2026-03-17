@@ -1,4 +1,4 @@
-# Copyright 2023-2025 Gentoo Authors
+# Copyright 2023-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -62,7 +62,7 @@ src_prepare() {
 }
 
 src_compile() {
-	export PYARROW_PARALLEL="$(makeopts_jobs)"
+	export PYARROW_PARALLEL="$(get_makeopts_jobs)"
 	export PYARROW_BUILD_VERBOSE=1
 	export PYARROW_CXXFLAGS="${CXXFLAGS}"
 	export PYARROW_BUNDLE_ARROW_CPP_HEADERS=0

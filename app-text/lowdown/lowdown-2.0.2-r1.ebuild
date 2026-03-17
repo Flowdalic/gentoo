@@ -1,4 +1,4 @@
-# Copyright 2021-2025 Gentoo Authors
+# Copyright 2021-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -54,7 +54,7 @@ src_configure() {
 	append-flags -fPIC
 	tc-export CC AR
 
-	local jobs="$(makeopts_jobs)"
+	local jobs="$(get_makeopts_jobs)"
 	unset MAKEOPTS
 	unset MAKEFLAGS
 

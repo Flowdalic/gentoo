@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -63,7 +63,7 @@ python_prepare_all() {
 		eapply "${FILESDIR}/${PN}-4.2.0-no-webkit.patch"
 	fi
 
-	local build_options="build_py --use_syswx --no_magic --jobs=$(makeopts_jobs) --verbose --release"
+	local build_options="build_py --use_syswx --no_magic --jobs=$(get_makeopts_jobs) --verbose --release"
 
 	DISTUTILS_ARGS=(
 		--verbose

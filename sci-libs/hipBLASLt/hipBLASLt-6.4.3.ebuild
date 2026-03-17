@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -125,7 +125,7 @@ src_configure() {
 		-DBUILD_CLIENTS_BENCHMARKS="$(usex benchmark ON OFF)"
 		-DPython_EXECUTABLE="${PYTHON}"
 		-DHIPBLASLT_ENABLE_MARKER="$(usex roctracer ON OFF)"
-		-DTensile_CPU_THREADS=$(makeopts_jobs)
+		-DTensile_CPU_THREADS=$(get_makeopts_jobs)
 		-Wno-dev
 	)
 

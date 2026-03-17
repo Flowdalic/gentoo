@@ -266,7 +266,7 @@ openssl_src_test() {
 	# -j1 here for https://github.com/openssl/openssl/issues/21999, but it
 	# shouldn't matter as tests were already built earlier, and HARNESS_JOBS
 	# controls running the tests.
-	emake -Onone -j1 HARNESS_JOBS="$(makeopts_jobs)" VFP=1 test
+	emake -Onone -j1 HARNESS_JOBS="$(get_makeopts_jobs)" VFP=1 test
 }
 
 openssl_src_install() {

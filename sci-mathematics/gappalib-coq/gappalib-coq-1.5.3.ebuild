@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -28,11 +28,11 @@ BDEPEND="dev-ml/findlib"
 QA_FLAGS_IGNORED='.*'
 
 src_compile() {
-	./remake --jobs=$(makeopts_jobs) || die
+	./remake --jobs=$(get_makeopts_jobs) || die
 }
 
 src_test() {
-	./remake --jobs=$(makeopts_jobs) check || die
+	./remake --jobs=$(get_makeopts_jobs) check || die
 }
 
 src_install() {

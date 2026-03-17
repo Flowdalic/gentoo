@@ -142,7 +142,7 @@ src_configure() {
 
 	if [[ "${AMDGPU_TARGETS[*]}" != "" ]]; then
 		mycmakeargs+=(
-			-DTENSILELITE_BUILD_PARALLEL_LEVEL=$(makeopts_jobs)
+			-DTENSILELITE_BUILD_PARALLEL_LEVEL=$(get_makeopts_jobs)
 		)
 	fi
 

@@ -163,7 +163,7 @@ src_configure() {
 
 src_compile() {
 	edo env RUST_BACKTRACE=1 \
-		"${EPYTHON}" ./x.py build -vv --config="${S}"/bootstrap.toml -j$(makeopts_jobs) \
+		"${EPYTHON}" ./x.py build -vv --config="${S}"/bootstrap.toml -j$(get_makeopts_jobs) \
 		library/std --stage 0
 }
 

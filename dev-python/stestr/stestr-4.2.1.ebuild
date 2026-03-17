@@ -41,6 +41,6 @@ python_test() {
 	local -x PYTHONPATH=${PWD}
 	"${EPYTHON}" -m stestr init || die
 	"${EPYTHON}" -m stestr run --test-path stestr/tests \
-		--concurrency "${EPYTEST_JOBS:-$(makeopts_jobs)}" ||
+		--concurrency "${EPYTEST_JOBS:-$(get_makeopts_jobs)}" ||
 		die "Tests failed with ${EPYTHON}"
 }

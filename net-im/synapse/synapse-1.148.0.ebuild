@@ -327,7 +327,7 @@ src_test() {
 }
 
 python_test() {
-	"${EPYTHON}" -m twisted.trial -j "$(makeopts_jobs)" tests
+	"${EPYTHON}" -m twisted.trial -j "$(get_makeopts_jobs)" tests
 }
 
 src_install() {

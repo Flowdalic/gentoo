@@ -523,7 +523,7 @@ src_configure() {
 		--with-external-thes-dir="${EPREFIX}/usr/share/myspell"
 		--with-external-tar="${DISTDIR}"
 		--with-lang=""
-		--with-parallelism=$(makeopts_jobs)
+		--with-parallelism=$(get_makeopts_jobs)
 		--with-system-openjpeg
 		--with-tls=nss
 		--with-vendor="Gentoo Foundation"

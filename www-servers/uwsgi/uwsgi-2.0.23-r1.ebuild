@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -274,7 +274,7 @@ python_install_symlinks() {
 src_compile() {
 	mkdir -p "${T}/plugins" || die
 
-	export CPUCOUNT="$(makeopts_jobs)"
+	export CPUCOUNT="$(get_makeopts_jobs)"
 
 	${EPYTHON} uwsgiconfig.py --build gentoo || die "building uwsgi failed"
 

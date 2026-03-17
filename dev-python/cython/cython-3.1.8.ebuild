@@ -77,7 +77,7 @@ python_test() {
 
 	local testargs=(
 		-vv
-		-j "$(makeopts_jobs)"
+		-j "$(get_makeopts_jobs)"
 		--work-dir "${BUILD_DIR}"/tests
 
 		--no-examples

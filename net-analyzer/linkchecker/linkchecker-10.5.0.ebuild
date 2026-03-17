@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -52,7 +52,7 @@ DOCS=(
 python_test() {
 	# epytest overrides bs4 ignores from pytest.ini
 	# and also outputs multiple warnings about unclosed test sockets
-	pytest -vra -n "$(makeopts_jobs)" || die
+	pytest -vra -n "$(get_makeopts_jobs)" || die
 }
 
 python_install_all() {

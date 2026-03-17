@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
@@ -231,7 +231,7 @@ src_prepare() {
 	default
 
 	# Make cargo respect MAKEOPTS
-	export CARGO_BUILD_JOBS="$(makeopts_jobs)"
+	export CARGO_BUILD_JOBS="$(get_makeopts_jobs)"
 
 	# Workaround for bgo #915651,915651,929013 on musl
 	if ! use elibc_glibc ; then

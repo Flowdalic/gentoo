@@ -221,7 +221,7 @@ src_prepare() {
 
 	cat <<-EOF > "${fake_bin}/nproc" || die
 #!/bin/sh
-echo "$(makeopts_jobs)"
+echo "$(get_makeopts_jobs)"
 EOF
 	chmod +x "${fake_bin}/nproc" || die
 
@@ -270,8 +270,8 @@ src_compile() {
 
 		# Auxiliary options.
 		--
-		-maxCpuCount:"$(makeopts_jobs)"
-		-p:MaxCpuCount="$(makeopts_jobs)"
+		-maxCpuCount:"$(get_makeopts_jobs)"
+		-p:MaxCpuCount="$(get_makeopts_jobs)"
 		-p:ContinueOnPrebuiltBaselineError="true"
 		-p:TreatWarningsAsErrors="false"
 		-p:WarningsNotAsErrors="CS7035"

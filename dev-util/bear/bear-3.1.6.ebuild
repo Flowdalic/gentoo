@@ -1,4 +1,4 @@
-# Copyright 2020-2025 Gentoo Authors
+# Copyright 2020-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -62,7 +62,7 @@ src_prepare() {
 
 src_configure() {
 	# TODO: remove this when https://bugs.gentoo.org/928346 is fixed
-	export CMAKE_BUILD_PARALLEL_LEVEL=$(makeopts_jobs)
+	export CMAKE_BUILD_PARALLEL_LEVEL=$(get_makeopts_jobs)
 
 	local mycmakeargs=(
 		-DENABLE_UNIT_TESTS="$(usex test)"
@@ -105,7 +105,7 @@ src_test() {
 		LIT_SKIP_TESTS+=( "cases/compilation/output/compile_cuda.sh" )
 	fi
 
-	mylitopts+=(-j "$(makeopts_jobs)" )
+	mylitopts+=(-j "$(get_makeopts_jobs)" )
 	[[ -n "${LIT_SKIP_TESTS[*]}" ]] && mylitopts+=( --filter-out "($( IFS='|'; echo "${LIT_SKIP_TESTS[*]}"))" )
 
 	export LIT_OPTS="${mylitopts[*]}"

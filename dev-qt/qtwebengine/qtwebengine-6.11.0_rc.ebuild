@@ -136,7 +136,7 @@ qtwebengine_check-reqs() {
 		# depending on free memory and *FLAGS, but prefer being safe as
 		# users having OOM issues with qtwebengine been rather common
 		tc-is-clang && : 15 || : 20
-		local CHECKREQS_MEMORY=$(($(makeopts_jobs)*_/10))G
+		local CHECKREQS_MEMORY=$(($(get_makeopts_jobs)*_/10))G
 	fi
 
 	check-reqs_${EBUILD_PHASE_FUNC} #570534

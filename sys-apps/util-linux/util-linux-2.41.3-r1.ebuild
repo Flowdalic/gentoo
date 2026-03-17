@@ -390,12 +390,12 @@ multilib_src_compile() {
 
 python_test() {
 	pushd "${BUILD_DIR}" >/dev/null || die
-	emake check TS_OPTS="--parallel=$(makeopts_jobs) --nonroot"
+	emake check TS_OPTS="--parallel=$(get_makeopts_jobs) --nonroot"
 	popd >/dev/null || die
 }
 
 multilib_src_test() {
-	emake check TS_OPTS="--parallel=$(makeopts_jobs) --nonroot"
+	emake check TS_OPTS="--parallel=$(get_makeopts_jobs) --nonroot"
 	if multilib_is_native_abi && use python ; then
 		python_foreach_impl python_test
 	fi

@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -36,7 +36,7 @@ PERL_RM_FILES=(
 )
 
 src_test() {
-	if [[ $(makeopts_jobs) -gt 70 ]]; then
+	if [[ $(get_makeopts_jobs) -gt 70 ]]; then
 		einfo "Reducing jobs to 70. Bug: https://bugs.gentoo.org/675164"
 		MAKEOPTS="${MAKEOPTS} -j70";
 	fi

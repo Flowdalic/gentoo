@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -621,7 +621,7 @@ src_compile () {
 			--no-restore
 			--no-self-contained
 			--runtime "${DOTNET_PKG_RUNTIME}"
-			-maxCpuCount:$(makeopts_jobs)
+			-maxCpuCount:$(get_makeopts_jobs)
 		)
 		edotnet build "${build_test_opts[@]}" ./Source/TestDafny/TestDafny.csproj
 	fi
@@ -648,7 +648,7 @@ src_test() {
 		--time-tests
 		--timeout 1800          # Let one test take no mere than half a hour.
 		--verbose
-		--workers="$(makeopts_jobs)"
+		--workers="$(get_makeopts_jobs)"
 	)
 	edo lit "${lit_opts[@]}" "${TEST_S}"
 }

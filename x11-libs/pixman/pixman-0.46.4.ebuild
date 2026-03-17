@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -63,6 +63,6 @@ multilib_src_configure() {
 }
 
 multilib_src_test() {
-	export OMP_NUM_THREADS=$(makeopts_jobs)
+	export OMP_NUM_THREADS=$(get_makeopts_jobs)
 	meson_src_test -t 100
 }

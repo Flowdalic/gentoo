@@ -520,7 +520,7 @@ src_test() {
 	export MTR_BUILD_THREAD="$((${RANDOM} % 100))"
 
 	if [[ -z "${MTR_PARALLEL}" ]] ; then
-		local -x MTR_PARALLEL=$(makeopts_jobs)
+		local -x MTR_PARALLEL=$(get_makeopts_jobs)
 
 		if [[ ${MTR_PARALLEL} -gt 4 ]] ; then
 			# Running multiple tests in parallel usually require higher ulimit

@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -140,7 +140,7 @@ python_test() {
 	unset AR AS ASFLAGS CC CXX CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
 	cd "${WORKDIR}/${P}" || die
 	"${EPYTHON}" runtest.py -a --passed \
-		-j "$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")"
+		-j "$(get_makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")"
 
 	# runtest.py script returns "0" if all tests are passed
 	# and returns "2" if there are any tests with "no result"

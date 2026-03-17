@@ -65,7 +65,7 @@ python_prepare_all() {
 		eapply "${FILESDIR}/${PN}-4.2.0-no-webkit.patch"
 	fi
 
-	local build_options="build_py --use_syswx --no_magic --jobs=$(makeopts_jobs) --verbose --release"
+	local build_options="build_py --use_syswx --no_magic --jobs=$(get_makeopts_jobs) --verbose --release"
 
 	DISTUTILS_ARGS=(
 		--verbose

@@ -1,4 +1,4 @@
-# Copyright 2019-2025 Gentoo Authors
+# Copyright 2019-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -95,7 +95,7 @@ src_configure() {
 		--no-faust
 		--no-ldconfig
 		--shared-lib
-		--jobs=$(makeopts_jobs)
+		--jobs=$(get_makeopts_jobs)
 		$(use_enable nls)
 		$(usev !bluetooth --no-bluez)
 		$(usev debug --debug)

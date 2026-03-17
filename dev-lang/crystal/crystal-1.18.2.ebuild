@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -85,7 +85,7 @@ src_configure() {
 		$(usex debug "" release=1)
 		progress=true
 		stats=1
-		threads="$(makeopts_jobs)"
+		threads="$(get_makeopts_jobs)"
 		verbose=1
 		check_lld= # disable opportunistic lld
 

@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -143,7 +143,7 @@ python_test() {
 	local EPYTEST_DESELECT=(
 		test/test_ui.py::CompletionTest::test_completion
 	)
-	epytest -n$(makeopts_jobs) -v
+	epytest -n$(get_makeopts_jobs) -v
 }
 
 python_install_all() {

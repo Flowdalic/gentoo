@@ -1,4 +1,4 @@
-# Copyright 2024-2025 Gentoo Authors
+# Copyright 2024-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -64,7 +64,7 @@ src_configure() {
 	# https://github.com/grpc/grpc/issues/36158
 	filter-lto
 
-	export GRPC_PYTHON_BUILD_EXT_COMPILER_JOBS="$(makeopts_jobs)"
+	export GRPC_PYTHON_BUILD_EXT_COMPILER_JOBS="$(get_makeopts_jobs)"
 	# system abseil-cpp crashes with USE=-debug, sigh
 	# https://bugs.gentoo.org/942021
 	#export GRPC_PYTHON_BUILD_SYSTEM_ABSL=1

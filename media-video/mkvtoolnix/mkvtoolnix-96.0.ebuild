@@ -144,16 +144,16 @@ src_configure() {
 }
 
 src_compile() {
-	rake V=1 -j$(makeopts_jobs) || die
+	rake V=1 -j$(get_makeopts_jobs) || die
 }
 
 src_test() {
-	rake V=1 -j$(makeopts_jobs) tests:unit || die
-	rake V=1 -j$(makeopts_jobs) tests:run_unit || die
+	rake V=1 -j$(get_makeopts_jobs) tests:unit || die
+	rake V=1 -j$(get_makeopts_jobs) tests:run_unit || die
 }
 
 src_install() {
-	DESTDIR="${D}" rake -j$(makeopts_jobs) install || die
+	DESTDIR="${D}" rake -j$(get_makeopts_jobs) install || die
 
 	einstalldocs
 	dodoc NEWS.md

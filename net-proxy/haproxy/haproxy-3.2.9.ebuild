@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="8"
@@ -154,7 +154,7 @@ src_test() {
 	# https://github.com/vtest/VTest/issues/12
 	emake -C "${VTEST_DIR}" CC="$(tc-getCC)" FLAGS="${CFLAGS} -Wno-error=unused-result"
 	ulimit -n 65536 || die "${PN} requires ulimit -n set to at least 65536 for tests"
-	env -u A -u D TMPDIR="/tmp" emake reg-tests -- --v --j "$(makeopts_jobs)" \
+	env -u A -u D TMPDIR="/tmp" emake reg-tests -- --v --j "$(get_makeopts_jobs)" \
 		HAPROXY_PROGRAM="${S}/haproxy" VTEST_PROGRAM="${VTEST_DIR}/vtest" REGTESTS_TYPE="default,bug,devel"
 }
 

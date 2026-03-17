@@ -1,4 +1,4 @@
-# Copyright 2024-2025 Gentoo Authors
+# Copyright 2024-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -94,7 +94,7 @@ src_compile() {
 
 src_test() {
 	local runtestargs=(
-		--clients "$(makeopts_jobs)" # see bug #649868
+		--clients "$(get_makeopts_jobs)" # see bug #649868
 
 		--skiptest "Active defrag eval scripts" # see bug #851654
 		--skiptest "FUNCTION - redict version api" # test fails due to release mishap on 7.3.1, remove on bump

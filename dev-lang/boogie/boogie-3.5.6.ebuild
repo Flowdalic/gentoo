@@ -250,7 +250,7 @@ src_test() {
 		--time-tests
 		--timeout="1800"          # Let one test take no more than half a hour.
 		--verbose
-		--workers="$(makeopts_jobs)"
+		--workers="$(get_makeopts_jobs)"
 	)
 	edo lit "${lit_opts[@]}" "${S}/Test"
 }

@@ -55,7 +55,7 @@ PATCHES=(
 freeorion_check-reqs() {
 	# cc1plus processes may suddenly use ~1.5GB all at once early on (2+GB
 	# if debug symbols) then far less for the rest, check minimal jobs*1.5
-	local CHECKREQS_MEMORY=$(($(makeopts_jobs)*1500))M
+	local CHECKREQS_MEMORY=$(($(get_makeopts_jobs)*1500))M
 	check-reqs_${EBUILD_PHASE_FUNC}
 }
 

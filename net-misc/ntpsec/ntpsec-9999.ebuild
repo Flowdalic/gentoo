@@ -148,7 +148,7 @@ src_test() {
 }
 
 python_test() {
-	"${EPYTHON}" "${WAF_BINARY}" check -v -j $(makeopts_jobs) || die
+	"${EPYTHON}" "${WAF_BINARY}" check -v -j $(get_makeopts_jobs) || die
 }
 
 src_install() {

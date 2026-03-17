@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -86,7 +86,7 @@ src_configure() {
 		-DBUILD_WITH_PIP=OFF
 		-DBUILD_WITH_HIPBLASLT="$(usex hipblaslt ON OFF)"
 		-DLINK_BLIS=OFF
-		-DTensile_CPU_THREADS=$(makeopts_jobs)
+		-DTensile_CPU_THREADS=$(get_makeopts_jobs)
 		-Wno-dev
 	)
 
@@ -94,7 +94,7 @@ src_configure() {
 		mycmakeargs+=(
 			-DTensile_COMPILER="hipcc"
 			-DTensile_ROOT="${EPREFIX}/usr/share/Tensile"
-			-DTensile_CPU_THREADS="$(makeopts_jobs)"
+			-DTensile_CPU_THREADS="$(get_makeopts_jobs)"
 		)
 	fi
 
