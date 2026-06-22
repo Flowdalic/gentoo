@@ -6,6 +6,9 @@
 # mgorny@gentoo.org
 # @SUPPORTED_EAPIS: 7 8
 # @BLURB: A few quick functions to install bash-completion files
+# @DESCRIPTION:
+# This eclass provides functions to install bash-completion files.
+# For EAPI 9 or newer, use shell-completion.eclass instead.
 # @EXAMPLE:
 #
 # @CODE
