@@ -8,7 +8,7 @@
 # mgorny@gentoo.org
 # @AUTHOR:
 # Alfred Wingate <parona@protonmail.com>
-# @SUPPORTED_EAPIS: 8 9
+# @SUPPORTED_EAPIS: 7 8 9
 # @BLURB: a few quick functions to install various shell completion files
 # @DESCRIPTION:
 # This eclass provides a standardised way to install shell completions
@@ -16,7 +16,7 @@
 # 'bash-completion-r1', thus extending on its functionality.
 
 case ${EAPI} in
-	8|9) ;;
+	7|8|9) ;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported"
 esac
 
