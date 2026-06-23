@@ -23,27 +23,31 @@ esac
 if [[ -z ${_SHELL_COMPLETION_ECLASS} ]]; then
 _SHELL_COMPLETION_ECLASS=1
 
+if [[ ${EAPI} != 9 ]]; then
 inherit toolchain-funcs
+fi
 
 # @FUNCTION: _bash-completion-r1_get_bashdir
 # @INTERNAL
 # @DESCRIPTION:
 # First argument is name of the string in bash-completion.pc
 # Second argument is the fallback directory if the string is not found
+# Note that the first argument is only used on EAPI < 9.
 # @EXAMPLE:
 # _bash-completion-r1_get_bashdir completionsdir /usr/share/bash-completion
 _bash-completion-r1_get_bashdir() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if $(tc-getPKG_CONFIG) --exists bash-completion &>/dev/null; then
+	if [[ ${EAPI} != 9 ]] && $(tc-getPKG_CONFIG) --exists bash-completion &>/dev/null; then
 		local path
 		path=$($(tc-getPKG_CONFIG) --variable="${1}" bash-completion) || die
 		# we need to return unprefixed, so strip from what pkg-config returns
 		# to us, bug #477692
 		echo "${path#"${EPREFIX}"}"
-	else
-		echo "${2}"
+		return
 	fi
+
+	echo "${2}"
 }
 
 # @FUNCTION: _bash-completion-r1_get_bashcompdir
