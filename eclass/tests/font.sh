@@ -14,6 +14,14 @@ doins() {
 	cp -t "${ED}${_INSDESTTREE_}" "$@"
 }
 
+pipestatus() {
+	local s ret=0
+	for s in "${PIPESTATUS[@]}"; do
+		[[ ${s} -ne 0 ]] && ret=${s}
+	done
+	return "${ret}"
+}
+
 test_default_depend() {
 	tbegin "default FONT_AUTO_DEPEND (yes) adds IUSE=X and BDEPEND"
 	(
@@ -144,6 +152,132 @@ test_src_install_use_x() {
 	tend $?
 }
 
+test_eapi_exports() {
+	tbegin "EAPI 7/8 exports pkg_setup src_install pkg_postinst pkg_postrm"
+	(
+		local exported=()
+		EXPORT_FUNCTIONS() { exported+=( "$@" ); }
+		EAPI=8
+		inherit font
+		[[ "${exported[*]}" == "pkg_setup src_install pkg_postinst pkg_postrm" ]]
+	)
+	tend $?
+
+	tbegin "EAPI 9 exports pkg_setup src_install pkg_postinst pkg_postrm src_compile"
+	(
+		local exported=()
+		EXPORT_FUNCTIONS() { exported+=( "$@" ); }
+		EAPI=9
+		inherit font
+		[[ "${exported[*]}" == "pkg_setup src_install pkg_postinst pkg_postrm src_compile" ]]
+	)
+	tend $?
+}
+
+test_bdf_to_otb() {
+	tbegin "font_bdf_to_otb converts single and multiple BDF files"
+	(
+		local args=()
+		EAPI=9
+		inherit font
+		fonttosfnt() { args=( "$@" ); touch "$3"; }
+		mkdir -p "${T}/otb_test"
+		touch "${T}/otb_test/a.bdf" "${T}/otb_test/b.bdf"
+		font_bdf_to_otb "${T}/otb_test/out.otb" "${T}/otb_test/a.bdf" "${T}/otb_test/b.bdf"
+		[[ "${args[*]}" == "-v -o ${T}/otb_test/out.otb -- ${T}/otb_test/a.bdf ${T}/otb_test/b.bdf" ]]
+	)
+	tend $?
+
+	tbegin "font_bdf_to_otb reads from stdin when no files given"
+	(
+		local args=() stdin_content=""
+		EAPI=9
+		inherit font
+		fonttosfnt() { args=( "$@" ); stdin_content=$(cat); touch "$3"; }
+		mkdir -p "${T}/otb_test"
+		font_bdf_to_otb "${T}/otb_test/stdin.otb" <<< "DUMMY_BDF"
+		[[ "${args[*]}" == "-v -o ${T}/otb_test/stdin.otb" && "${stdin_content}" == "DUMMY_BDF" ]]
+	)
+	tend $?
+}
+
+test_src_compile_otb() {
+	tbegin "font_src_compile converts BDF and BDF.GZ to OTB in EAPI 9 via pipeline"
+	(
+		EAPI=9
+		FONT_OPENTYPE_COMPAT=1
+		FONT_SUFFIX="bdf"
+		FONT_PN="testbdf"
+		S="${WORKDIR}/testbdf"
+		mkdir -p "${S}"
+		touch "${S}/test.bdf"
+		echo "TEST_GZ" | gzip -c > "${S}/test_gz.bdf.gz"
+		inherit font
+		fonttosfnt() { touch "$3"; }
+		use() { [[ $1 == "opentype-compat" ]] && return 0; return 1; }
+		in_iuse() { [[ $1 == "opentype-compat" ]] && return 0; return 1; }
+		font_src_compile
+		[[ -f "${S}/test.otb" && -f "${S}/test_gz.otb" ]] || exit 1
+		[[ ${FONT_SUFFIX} == "bdf otb" ]] || exit 1
+	)
+	tend $?
+}
+
+test_src_install_eapi9_vs_eapi8() {
+	tbegin "font_src_install in EAPI 9 does not run font_wrap_opentype_compat in ED"
+	(
+		wrap_called=0
+		EAPI=9
+		FONT_OPENTYPE_COMPAT=1
+		FONT_SUFFIX="otb"
+		FONT_PN="testbdf"
+		FONTDIR="/usr/share/fonts/testbdf"
+		S="${WORKDIR}/testbdf"
+		mkdir -p "${S}"
+		touch "${S}/test.otb"
+		inherit font
+		font_wrap_opentype_compat() { wrap_called=1; }
+		use() { [[ $1 == "opentype-compat" ]] && return 0; return 1; }
+		in_iuse() { [[ $1 == "opentype-compat" ]] && return 0; return 1; }
+		einstalldocs() { :; }
+		font_src_install
+		[[ ${wrap_called} -eq 0 ]]
+	)
+	tend $?
+
+	tbegin "font_src_install in EAPI 8 runs font_wrap_opentype_compat in ED"
+	(
+		wrap_called=0
+		EAPI=8
+		FONT_OPENTYPE_COMPAT=1
+		FONT_SUFFIX="bdf"
+		FONT_PN="testbdf"
+		FONTDIR="/usr/share/fonts/testbdf"
+		S="${WORKDIR}/testbdf"
+		mkdir -p "${S}"
+		touch "${S}/test.bdf"
+		inherit font
+		font_wrap_opentype_compat() { wrap_called=1; }
+		use() { [[ $1 == "opentype-compat" ]] && return 0; return 1; }
+		in_iuse() { [[ $1 == "opentype-compat" ]] && return 0; return 1; }
+		einstalldocs() { :; }
+		font_src_install
+		[[ ${wrap_called} -eq 1 ]]
+	)
+	tend $?
+}
+
+test_src_compile_eapi_guard() {
+	tbegin "font_src_compile dies in EAPI 7/8"
+	(
+		EAPI=8
+		inherit font
+		( font_src_compile 2>/dev/null ) && exit 1
+		exit 0
+	)
+	tend $?
+}
+
 test_default_depend
 test_opt_out_depend
 test_encodings_depend
@@ -152,5 +286,10 @@ test_xfont_config_use_x_enabled
 test_xfont_config_no_iuse_x
 test_src_install_opt_out
 test_src_install_use_x
+test_eapi_exports
+test_bdf_to_otb
+test_src_compile_eapi_guard
+test_src_compile_otb
+test_src_install_eapi9_vs_eapi8
 
 texit
